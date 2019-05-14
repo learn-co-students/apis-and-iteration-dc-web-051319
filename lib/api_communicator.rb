@@ -23,8 +23,10 @@ end
 def print_movies(films)
   # some iteration magic and puts out the movies in a nice list
     if films
+        i = 0
         films.each do |film|
-            puts film["title"]
+            i += 1
+            puts "#{i} #{film["title"]}"
         end
     else
         puts "Not a character in Star Wars."
