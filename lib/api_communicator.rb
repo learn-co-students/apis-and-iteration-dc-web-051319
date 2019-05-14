@@ -13,7 +13,7 @@ def get_character_movies_from_api(character_name)
     end
 
 
-    if character_info
+    if character_info!=nil
       character_info["films"].collect do |char|
         JSON.parse(RestClient.get(char))
       end
@@ -23,8 +23,8 @@ def get_character_movies_from_api(character_name)
   end
 
 
-
   def get_valid_character_from_user
+    puts "NAME NOT FOUND"
     puts "please enter a VALID character name:"
     # use gets to capture the user's input. This method should return that input, downcased.
     character = gets.chomp.downcase
@@ -41,9 +41,9 @@ def get_character_movies_from_api(character_name)
 
 def print_movies(films)
   # some iteration magic and puts out the movies in a nice list
-  films.each_with_index do |x,y|
+  films.each_with_index do |films,index|
   puts "***************"
-  puts "Movie:#{y+1} #{x["episode_id"]} - #{x["title"]}"
+  puts "Movie: #{index+1} - Episode: #{films["episode_id"]} - #{films["title"]}"
   puts "***************"
   end
 
