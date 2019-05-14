@@ -3,16 +3,18 @@ require 'json'
 require 'pry'
 
 def get_movies_from_api
-    #make the web request
+    # make the web request
     response_string = RestClient.get('http://www.swapi.co/api/people/')
     response_hash = JSON.parse(response_string)
 end
 
 def get_character(movies, character_name)
+    # find given character in movies hash
     movies["results"].find{ |char| char["name"] == character_name }
 end
 
 def get_movies(character_info)
+    # check if character exists, if so evalute links as array
     if character_info
         character_info["films"].map do |film_link|
             JSON.parse(RestClient.get(film_link))
@@ -23,6 +25,7 @@ def get_movies(character_info)
 end
 
 def print_movies(films)
+    # return pretty list of films character appears in
     if films
         i = 0
         films.each do |film|
