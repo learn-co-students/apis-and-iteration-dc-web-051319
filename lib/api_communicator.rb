@@ -11,7 +11,6 @@ def get_character_movies_from_api(character_name)
       character["name"].downcase==character_name
     end
 
-
     if character_info!=nil
       character_info["films"].collect do |char|
         JSON.parse(RestClient.get(char))
