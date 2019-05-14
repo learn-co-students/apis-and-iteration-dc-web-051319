@@ -9,7 +9,6 @@ def get_character_movies_from_api(character_name)
   # iterate over the response hash to find the collection of `films` for the given
     character_info=response_hash["results"].find do |character|
       character["name"].downcase==character_name
-    end
 
     if character_info!=nil
       character_info["films"].collect do |char|
