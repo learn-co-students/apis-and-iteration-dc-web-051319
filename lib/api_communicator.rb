@@ -46,7 +46,7 @@ end
 
 def find_character(character_name, response_hash)
   response_hash["results"].find do |hash|
-    hash["name"] == character_name
+    hash["name"].downcase == character_name.downcase
   end
 end
 
