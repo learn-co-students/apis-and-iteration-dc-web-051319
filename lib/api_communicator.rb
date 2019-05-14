@@ -10,7 +10,7 @@ end
 
 def get_character(movies, character_name)
     # find given character in movies hash
-    movies["results"].find{ |char| char["name"] == character_name }
+    movies["results"].find{ |char| char["name"].downcase == character_name.downcase }
 end
 
 def get_movies(character_info)
