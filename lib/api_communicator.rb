@@ -7,20 +7,25 @@ def get_character_movies_from_api(character_name)
   response_string = RestClient.get('http://www.swapi.co/api/people/')
   response_hash = JSON.parse(response_string)
   # iterate over the response hash to find the collection of `films` for the given
+
     character_info=response_hash["results"].find do |character|
       character["name"].downcase==character_name
     end
-    if character_info!=nil
+
+
+    if character_info
       character_info["films"].collect do |char|
         JSON.parse(RestClient.get(char))
       end
     else
-      character_info=[""]
+      get_character_movies_from_api(get_valid_character_from_user)
     end
   end
 
-  def get_right_character_from_user
-    puts "please enter a valid character name"
+
+
+  def get_valid_character_from_user
+    puts "please enter a VALID character name:"
     # use gets to capture the user's input. This method should return that input, downcased.
     character = gets.chomp.downcase
   end
